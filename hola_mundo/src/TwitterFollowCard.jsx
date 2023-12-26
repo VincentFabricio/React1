@@ -1,9 +1,7 @@
 import { useState } from "react"
 
-export function TwitterFollowCard({formatUserName, userName='Unknown', children}){
-    const [isFollowing, setIsFollowing] = useState(false)
-
-    const addAt = (userName) => `@${userName}`
+export function TwitterFollowCard({initIsFollowing, userName='Unknown', children}){
+    const [isFollowing, setIsFollowing] = useState(initIsFollowing)
 
     const text = isFollowing ? 'Siguiendo' : 'Seguir'
     const buttonClassName = isFollowing ? 
@@ -12,6 +10,8 @@ export function TwitterFollowCard({formatUserName, userName='Unknown', children}
     const handleClick = () => {
         setIsFollowing(!isFollowing)
     }
+
+    console.log('Render with Name', userName)
 
     return(
         <article className='tw-followCad'>
@@ -22,12 +22,15 @@ export function TwitterFollowCard({formatUserName, userName='Unknown', children}
                 <div className='tw-followCad-info'>
                     <strong>{children}</strong>
                     <span
-                    className='tw-followCad-infoUserName' >{formatUserName(userName)}</span>
+                    className='tw-followCad-infoUserName' >@{userName}</span>
                 </div>
                 
             </header>
             <aside>
-                <button className={buttonClassName} onClick={handleClick}>{text}</button>
+                <button className={buttonClassName} onClick={handleClick}>
+                    <span className='tw-followCard-text'>{text}</span>
+                    <span className='tw-followCard-stopFollow'>Dejar de seguir</span>
+                </button>
             </aside>
         </article>
     )

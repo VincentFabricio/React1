@@ -1,31 +1,48 @@
+import { useState } from 'react'
 import './App.css'
 import { TwitterFollowCard } from './TwitterFollowCard'
 
+const users =[
+    {
+        userName: 'vincentfabricio',
+        name: 'Vincent Fabricio',
+        isFollowing: true
+    },
+    {
+        userName: 'midudev',
+        name: 'Miguel Ángel Durán',
+        isFollowing: false
+    },
+    {
+        userName: 'pheralb',
+        name: 'Pablo H..',
+        isFollowing: true
+    },
+    {
+        userName: 'PacoHdezs',
+        name: 'Paco Hernández',
+        isFollowing: false
+    }
+]
+
 export function App () { 
-    const format = (userName) => `@${userName}`
-    const midudev = {formatUserName:format}
+
 
     return (
-        <div className='App'>
+        <section className='App'>
+            {
+                users.map(({userName, name, isFollowing}) => (
+                        <TwitterFollowCard
+                        key={userName}
+                        userName={userName}
+                        initIsFollowing={isFollowing}>
+                            {name}
+                        </TwitterFollowCard>
+                    )
+                )
+            }
 
-            <TwitterFollowCard 
-                formatUserName={format} 
-                userName="midudev" >
-                    <h1>Vincent Fabricio</h1>
-            </TwitterFollowCard>
-
-            <TwitterFollowCard 
-                formatUserName={format} 
-                userName="pherald" >
-                    <strong>Mancera Hernández</strong>
-            </TwitterFollowCard>
-
-            <TwitterFollowCard {... midudev}>
-                    <h2>Mancera Hernández</h2>
-            </TwitterFollowCard>
-
-            
-        </div>
+        </section>
         
     )
 }

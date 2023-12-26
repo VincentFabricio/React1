@@ -38,7 +38,10 @@
 }
 
 .tw-followCad-button.is-following{
-    border: 1px solid red;
+    border: 1px solid #bbb;
+    background-color: transparent;
+    color: #fff;
+    width: 140px;
 }
 
 .tw-followCad-button:hover {
@@ -47,5 +50,24 @@
 }
 
 .tw-followCad-button.is-following:hover{
-    background-color: red;
+    background-color: rgba(252, 101, 101, 0.178);
+    color: red;
+    border: 1px solid red;
+    transition: 0.3s ease all;
+    opacity: 1;
+}
+
+.tw-followCad-button.is-following:hover .tw-followCard-stopFollow{
+    display: block;
+}
+
+.tw-followCad-button.is-following:hover .tw-followCard-text{
+    display: none;
+}
+
+.tw-followCard-stopFollow {
+    display: none;
+}
+.tw-followCard-text {
+    display: block;
 }
